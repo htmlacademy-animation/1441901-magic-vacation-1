@@ -89,7 +89,8 @@
     font-size: 3rem;
   }
 }
-.active .slider__item-text {
+.active:hover .slider__item-text,
+#story:target .slider__item-text {
   opacity: 1;
   transform: translateX(0);
 }

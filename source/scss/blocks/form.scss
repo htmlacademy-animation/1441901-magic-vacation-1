@@ -30,7 +30,8 @@
   }
 }
 
-.active .form__field {
+.active:hover .form__field,
+#game:target .form__field {
 	width: calc(100% - 21rem);
 }
 

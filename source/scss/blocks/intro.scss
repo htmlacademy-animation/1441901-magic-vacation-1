@@ -140,7 +140,8 @@
     }
   }
 }
-.active .intro__message {
+.active:hover .intro__message,
+#top:target .intro__message {
     opacity: 1;
     transform: translateY(0);
   }
