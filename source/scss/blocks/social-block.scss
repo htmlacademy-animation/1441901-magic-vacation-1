@@ -6,6 +6,17 @@
       opacity: 1;
       pointer-events: auto;
     }
+	
+	.social-block__list li {
+		opacity: 1;
+		transition: opacity 0.7s ease;
+	}
+	.social-block__list li:nth-child(2) {
+		transition-delay: 250ms;
+	}
+	.social-block__list li:nth-child(3) {
+		transition-delay: 500ms;
+	}
   }
 }
 
@@ -145,6 +156,7 @@
   li {
     flex: none;
     margin-bottom: 0.5rem;
+	opacity:0;
 
     @media (min-width: $stop-scaling) {
       margin-bottom: 5px;
