@@ -1315,7 +1315,8 @@ img {
       opacity: 1;
       pointer-events: auto; } }
 
-.active .form__field {
+.active:hover .form__field,
+#game:target .form__field {
   width: calc(100% - 21rem); }
 
 .form__field {
@@ -1642,7 +1643,8 @@ img {
       width: 1.1rem;
       height: 1.1rem; } }
 
-.active .intro__message {
+.active:hover .intro__message,
+#top:target .intro__message {
   opacity: 1;
   transform: translateY(0); }
 
@@ -2971,7 +2973,8 @@ img {
       margin-left: -2.5rem;
       font-size: 3rem; } }
 
-.active .slider__item-text {
+.active:hover .slider__item-text,
+#story:target .slider__item-text {
   opacity: 1;
   transform: translateX(0); }
 
