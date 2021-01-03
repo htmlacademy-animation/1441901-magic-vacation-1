@@ -30,10 +30,6 @@
   }
 }
 
-.active:hover .form__field,
-#game:target .form__field {
-	width: calc(100% - 21rem);
-}
 
 .form__field {
   flex: none;
@@ -51,7 +47,7 @@
   outline: none;
   position: absolute;
   right: 21rem;
-  transition: width ease-in-out 0.5s;
+
 
   &:focus {
     border: 1px solid $c-purple;
@@ -92,6 +88,14 @@
 }
 
 
+.screen {
+  &.active {
+    .form__field {
+      width: calc(100% - 21rem);
+      transition: width 0.5s ease;
+    }
+  }
+}
 
 .form__button {
   flex-grow: 1;

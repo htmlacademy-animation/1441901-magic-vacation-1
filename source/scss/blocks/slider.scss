@@ -89,11 +89,7 @@
     font-size: 3rem;
   }
 }
-.active:hover .slider__item-text,
-#story:target .slider__item-text {
-  opacity: 1;
-  transform: translateX(0);
-}
+
 .slider__item-text {
   margin-top: 3.6rem;
   margin-bottom: 0;
@@ -102,9 +98,7 @@
   line-height: 2rem;
   opacity: 0;
   transform: translateX(100px);
-  transition-property: opacity, transform;
-  transition-duration:1s, 1s;
-  transition-timing-function: ease-in, ease-in;
+  
   
   @media (min-width: $stop-scaling) {
     margin-top: 36px;
@@ -133,7 +127,17 @@
     line-height: 1.5rem;
   }
 }
-
+.screen {
+  &.active {
+    .slider__item-text {
+      opacity: 1;
+	  transform: translateX(0);
+      transition-property: opacity, transform;
+      transition-duration:1s, 1s;
+      transition-timing-function: ease-in, ease-in;
+    }
+  }
+}
 .slider__controls {
   position: absolute;
   bottom: 2.8rem;
