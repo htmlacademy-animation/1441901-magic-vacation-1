@@ -89,7 +89,14 @@
   @media (max-width: $mobile) and (orientation: landscape) {
     display: block;
   }
-
+  &:hover{
+  background-color: $c-dark;
+  color: $c-light;
+  width: 3rem;
+  height: 3rem;
+  transition: all 0.5s ease;
+  }
+  
   &::before,
   &::after {
     content: "";
