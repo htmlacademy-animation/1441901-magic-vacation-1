@@ -1315,10 +1315,6 @@ img {
       opacity: 1;
       pointer-events: auto; } }
 
-.active:hover .form__field,
-#game:target .form__field {
-  width: calc(100% - 21rem); }
-
 .form__field {
   flex: none;
   margin-right: 3rem;
@@ -1334,8 +1330,7 @@ img {
   border-radius: 3rem;
   outline: none;
   position: absolute;
-  right: 21rem;
-  transition: width ease-in-out 0.5s; }
+  right: 21rem; }
   .form__field:focus {
     border: 1px solid #a67ee5; }
   @media (min-width: 2000px) {
@@ -1367,6 +1362,10 @@ img {
       right: 5rem;
       height: 4rem;
       font-size: 1.6rem; } }
+
+.screen.active .form__field {
+  width: calc(100% - 21rem);
+  transition: width 0.5s ease; }
 
 .form__button {
   flex-grow: 1;
@@ -2979,11 +2978,6 @@ img {
       margin-left: -2.5rem;
       font-size: 3rem; } }
 
-.active:hover .slider__item-text,
-#story:target .slider__item-text {
-  opacity: 1;
-  transform: translateX(0); }
-
 .slider__item-text {
   margin-top: 3.6rem;
   margin-bottom: 0;
@@ -2991,10 +2985,7 @@ img {
   font-size: 1.8rem;
   line-height: 2rem;
   opacity: 0;
-  transform: translateX(100px);
-  transition-property: opacity, transform;
-  transition-duration: 1s, 1s;
-  transition-timing-function: ease-in, ease-in; }
+  transform: translateX(100px); }
   @media (min-width: 2000px) {
     .slider__item-text {
       margin-top: 36px;
@@ -3019,6 +3010,13 @@ img {
       min-height: 14rem;
       font-size: 1.4rem;
       line-height: 1.5rem; } }
+
+.screen.active .slider__item-text {
+  opacity: 1;
+  transform: translateX(0);
+  transition-property: opacity, transform;
+  transition-duration: 1s, 1s;
+  transition-timing-function: ease-in, ease-in; }
 
 .slider__controls {
   position: absolute;
