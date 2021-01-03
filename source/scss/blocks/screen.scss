@@ -18,6 +18,19 @@
     height: 100vh;
   }
 }
+.active .screen_bg_overlay {
+	height: 120vh;
+}
+.screen_bg_overlay {
+	height: 0;
+	background-color: $c-dark;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	z-index: 0;
+	transition: height ease-in-out 2s 1s;
+}
 
 .screen__wrapper {
   @include container;
