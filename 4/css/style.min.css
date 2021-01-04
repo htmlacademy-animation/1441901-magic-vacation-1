@@ -2499,7 +2499,7 @@ img {
 
 @keyframes bullet-scale {
   from {
-    transform: scale(0.1);
+    transform: scale(0);
     opacity: 0; }
   70% {
     transform: scale(1.1); }
@@ -2582,35 +2582,37 @@ img {
 
 .active .rules__item:nth-child(2)::before {
   opacity: 0;
-  animation: bullet-scale 0.7s ease-out 0.6s forwards; }
+  animation: bullet-scale 0.7s ease-out 0.5s forwards; }
 
 .active .rules__item:nth-child(2) p {
   opacity: 0;
-  animation: move-item 0.7s ease-out 0.6s forwards; }
+  animation: move-item 0.7s ease-out 0.5s forwards; }
 
 .active .rules__item:nth-child(3)::before {
   opacity: 0;
-  animation: bullet-scale 0.7s ease-out 1.2s forwards; }
+  animation: bullet-scale 0.7s ease-out 1s forwards; }
 
 .active .rules__item:nth-child(3) p {
   opacity: 0;
-  animation: move-item 0.7s ease-out 1.2s forwards; }
+  animation: move-item 0.7s ease-out 1s forwards; }
 
 .active .rules__item:nth-child(4)::before {
   opacity: 0;
-  animation: bullet-scale 0.7s ease-out 1.8s forwards; }
+  animation: bullet-scale 0.7s ease-out 1.5s forwards; }
 
 .active .rules__item:nth-child(4) p {
   opacity: 0;
-  animation: move-item 0.7s ease-out 1.8s forwards; }
+  animation: move-item 0.7s ease-out 1.5s forwards; }
 
 @keyframes rules-link {
   0% {
     width: 1rem;
     color: transparent; }
+  70% {
+    color: transparent; }
   100% {
     width: 20rem;
-    color: #a67ee5; } }
+    color: #5f458c; } }
 
 .rules__link {
   position: absolute;
