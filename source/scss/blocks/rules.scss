@@ -247,16 +247,23 @@
 
 @keyframes rules-link {
   0% {
-    width: 1rem;
+    width: 1em;
     color: transparent;
+	opacity:0;
+  }
+  10% {
+	width: 1rem;
+    color: transparent;
+	opacity:1;
   }
   70%{
 	color: transparent;
+	opacity:1;
   }
-
   100% {
-    width: 20rem;
-	color: $c-dark;
+    opacity:1;
+	width: 20rem;
+	color: $c-purple;
   }
 }
 
@@ -265,6 +272,7 @@
   bottom: 6rem;
   right: 5.6rem;
   width: 1rem;
+  opacity:0;
   color: transparent;
   animation: rules-link 0.7s ease-out 1.5s forwards;
 
