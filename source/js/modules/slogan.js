@@ -70,7 +70,7 @@ setTimeout(()=>{
 const animationDate = new AccentTypographyBuild(`.intro__date`, 500, `active`, `translate-span`);
 setTimeout(()=>{
   animationDate.runAnimation();
-}, 500);
+}, 800);
 
 const animationStoryScreenTextLine = new AccentTypographyBuild(`.slider__item-title`, 500, `active`, `translate-span`);
 setTimeout(()=>{
