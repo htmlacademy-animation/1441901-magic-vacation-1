@@ -956,7 +956,7 @@ button.swiper-pagination-bullet {
   }
 }
 .left-leaf {
-	background: url(../../img/leaf_blue_2.png) no-repeat 0 0;
+	background: url(/img/leaf_blue_2.png) no-repeat 0 0;
 	width: 279px;
 	height: 241px;
 	position: absolute;
@@ -969,7 +969,7 @@ button.swiper-pagination-bullet {
 	animation: left-leaf 2s ease 1s forwards;
 }
 .right-leaf {
-	background: url(../../img/leaf_blue_1.png) no-repeat 0 0;
+	background: url(/img/leaf_blue_1.png) no-repeat 0 0;
 	width: 279px;
 	height: 261px;
 	position: absolute;
@@ -982,7 +982,7 @@ button.swiper-pagination-bullet {
 	animation: right-leaf 2s ease 1s forwards;
 }
 .green-leaf {
-	background: url(../../img/leaf_green.png) no-repeat 0 0;
+	background: url(/img/leaf_green.png) no-repeat 0 0;
 	width: 332px;
 	height: 159px;
 	position: absolute;
@@ -1006,7 +1006,7 @@ button.swiper-pagination-bullet {
   }
 }
 .suitcase {
-	background: url(../../img/suitcase.png) no-repeat 0 0;
+	background: url(/img/suitcase.png) no-repeat 0 0;
 	background-size: cover;
 	width: 440px;
 	height: 440px;
@@ -1023,33 +1023,33 @@ button.swiper-pagination-bullet {
 	opacity:0;
 	transform: translate(-100px, 100%) scale(0);
   }
-  75% {
+  50% {
 	
 	transform: translate(0, 0) scale(1.1);
   }
-  80% {
+  60% {
 	
-	transform: rotate(-3deg);
+	transform: translate(0, -3px) rotate(-2deg)  scale(1);
   }
-  85% {
+  70% {
 	opacity:1;
-	transform: rotate(3deg);
+	transform: translate(0, 3px) rotate(2deg);
+  }
+  80% {
+	opacity:1;
+	transform: translate(0, -3px) rotate(-2deg);
   }
   90% {
 	opacity:1;
-	transform: rotate(-3deg);
-  }
-  95% {
-	opacity:1;
-	transform: rotate(3deg);
+	transform: translate(0, 3px) rotate(2deg);
   }
   100% {
     opacity: 1;
-	transform: translate(0,0) scale(1) rotate(0);
+	transform: translate(0,0) rotate(0);
   }
 }
 .flamingo {
-	background: url(../../img/flamingo.png) no-repeat 0 0;
+	background: url(../img/flamingo.png) no-repeat 0 0;
 	background-size: cover;
 	width: 300px;
 	height: 300px;
@@ -1060,7 +1060,7 @@ button.swiper-pagination-bullet {
 	opacity:0;
 	transform: translate(-100px, 100%) scale(0);
 	transform-origin: center center;
-	animation: flamingo 3s ease 0.3s forwards;
+	animation: flamingo 3.5s ease-out 0.3s forwards;
 }
 @keyframes result-button {
   0% {
