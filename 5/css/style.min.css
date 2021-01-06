@@ -956,7 +956,7 @@ button.swiper-pagination-bullet {
   }
 }
 .left-leaf {
-	background: url(../img/leaf_blue_2.png) no-repeat 0 0;
+	background: url(../../img/leaf_blue_2.png) no-repeat 0 0;
 	width: 279px;
 	height: 241px;
 	position: absolute;
@@ -969,7 +969,7 @@ button.swiper-pagination-bullet {
 	animation: left-leaf 2s ease 1s forwards;
 }
 .right-leaf {
-	background: url(../img/leaf_blue_1.png) no-repeat 0 0;
+	background: url(../../img/leaf_blue_1.png) no-repeat 0 0;
 	width: 279px;
 	height: 261px;
 	position: absolute;
@@ -982,7 +982,7 @@ button.swiper-pagination-bullet {
 	animation: right-leaf 2s ease 1s forwards;
 }
 .green-leaf {
-	background: url(../img/leaf_green.png) no-repeat 0 0;
+	background: url(../../img/leaf_green.png) no-repeat 0 0;
 	width: 332px;
 	height: 159px;
 	position: absolute;
@@ -1006,7 +1006,7 @@ button.swiper-pagination-bullet {
   }
 }
 .suitcase {
-	background: url(../img/suitcase.png) no-repeat 0 0;
+	background: url(../../img/suitcase.png) no-repeat 0 0;
 	background-size: cover;
 	width: 440px;
 	height: 440px;
@@ -1049,7 +1049,7 @@ button.swiper-pagination-bullet {
   }
 }
 .flamingo {
-	background: url(../img/flamingo.png) no-repeat 0 0;
+	background: url(../../img/flamingo.png) no-repeat 0 0;
 	background-size: cover;
 	width: 300px;
 	height: 300px;
