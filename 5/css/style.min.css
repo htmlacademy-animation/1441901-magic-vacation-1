@@ -1075,6 +1075,8 @@ button.swiper-pagination-bullet {
 #result2 .form__button {
 	opacity:0;
 	animation: result-button 0.7s ease 2s forwards;
+	position: absolute;
+	right:0;
 }
 @keyframes form-field {
   0% {
@@ -1094,6 +1096,8 @@ button.swiper-pagination-bullet {
 	width:1rem;
 	opacity:0;
 	animation: form-field 0.7s ease 2s forwards;
+	position: absolute;
+	right: 21rem;
 }
 
 @font-face {
