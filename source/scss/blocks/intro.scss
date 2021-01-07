@@ -25,7 +25,7 @@
 
 .intro__title {
   margin: 0;
-  max-width: 99rem;
+  max-width: 100rem;
   text-transform: uppercase;
   font-family: $font-alt;
   font-weight: 400;
@@ -34,7 +34,7 @@
   letter-spacing: -0.04em;
 
   @media (min-width: $stop-scaling) {
-    max-width: 990px;
+    max-width: 1000px;
     font-size: 120px;
   }
 

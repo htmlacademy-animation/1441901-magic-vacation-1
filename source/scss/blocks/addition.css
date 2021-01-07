@@ -1,0 +1,231 @@
+@keyframes translate-span {
+  0% {
+    transform: translate3d(0, 1em, 0);
+  }
+  100% {
+    transform: translate3d(0, 3px, 0);
+  }
+}
+
+.text__word {
+  display: inline-block;
+  padding: 0 5px;
+  overflow: hidden;
+}
+
+.text__word > span {
+    display: inline-block;
+	transform: translate3d(0, 1em, 0);
+}
+
+.intro__title .text__word > span {
+    margin: 0 -1px 0 0;
+	padding-top:15px;
+}
+
+@keyframes right-leaf {
+  0% {
+	opacity:0;
+	transform: translateY(-300px) rotateZ(-20deg);
+  }
+  25% {
+    transform: rotateZ(10deg);
+  }
+  50% {
+    transform: rotateZ(-10deg);
+  }
+  75% {
+    transform: rotateZ(5deg);
+	 opacity: 1;
+  }
+  100% {
+    opacity: 1;
+	transform: translateY(0) rotateZ(0);
+  }
+}
+@keyframes left-leaf {
+  0% {
+	opacity:0;
+	transform: translateY(-300px) rotate(20deg);
+  }
+  25% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  75% {
+    transform: rotate(-5deg);
+	 opacity: 1;
+  }
+  100% {
+    opacity: 1;
+	transform: translateY(0) rotate(0);
+  }
+}
+@keyframes green-leaf {
+  0% {
+	opacity:0;
+	transform: translateY(-300px) rotate(-20deg);
+  }
+  100% {
+    opacity: 1;
+	transform: translateY(0) rotate(0);
+  }
+}
+.left-leaf {
+	background: url(../img/leaf_blue_2.png) no-repeat 0 0;
+	width: 279px;
+	height: 241px;
+	position: absolute;
+	top: 50%;
+	right:54%;
+	display: block;
+	opacity:0;
+	transform: translate3d(0, -300px, 0);
+	transform-origin: right center;
+	animation: left-leaf 2s ease 1s forwards;
+	animation-play-state: paused;
+}
+.right-leaf {
+	background: url(../img/leaf_blue_1.png) no-repeat 0 0;
+	width: 279px;
+	height: 261px;
+	position: absolute;
+	top: 40%;
+	left: 54%;
+	display: block;
+	opacity:0;
+	transform: translate3d(0, -300px, 0);
+	transform-origin: left center;
+	animation: right-leaf 2s ease 1s forwards;
+	animation-play-state: paused;
+}
+.green-leaf {
+	background: url(../img/leaf_green.png) no-repeat 0 0;
+	width: 332px;
+	height: 159px;
+	position: absolute;
+	top: 52%;
+	left: 53%;
+	display: block;
+	opacity:0;
+	transform: translate3d(0, -300px, 0);
+	transform-origin: left center;
+	animation: green-leaf 2s ease 1s forwards;
+	animation-play-state: paused;
+}
+@keyframes suitcase {
+  0% {
+	opacity:0;
+	transform: translate(-100px, 100%) scale(0);
+  }
+  
+  100% {
+    opacity: 1;
+	transform: translate(0,0) scale(1);
+  }
+}
+.suitcase {
+	background: url(../img/suitcase.png) no-repeat 0 0;
+	background-size: cover;
+	width: 440px;
+	height: 440px;
+	position: absolute;
+	top: 37%;
+	left: calc(50% - 220px);
+	display: block;
+	opacity:0;
+	transform: translate(-100px, 100%) scale(0);
+	animation: suitcase 2s cubic-bezier(0.25, 0.1, 0.79, 2) 0.3s forwards;
+	animation-play-state: paused;
+}
+@keyframes flamingo-move {
+  0% {
+	opacity:0;
+	transform: translate(-100px, 100%) scale(0);
+  }
+  100% {
+    opacity: 1;
+	transform: translate(0,0) scale(1);
+  }
+}
+@keyframes flamingo-rotate {
+  0% {
+	transform: translate(-3px, -6px) rotate(3deg);
+  }
+  50% {
+	transform: translate(3px,6px) rotate(-3deg);
+  }
+  100% {
+	transform: translate(-3px, -6px) rotate(3deg);
+  }
+}
+.flamingo {
+	background: url(../img/flamingo.png) no-repeat 0 0;
+	background-size: cover;
+	width: 300px;
+	height: 300px;
+	position: absolute;
+	top: 50%;
+	left: calc(50% - 250px);
+	display: block;
+	opacity:0;
+	transform: translate(-100px, 100%) scale(0);
+	transform-origin: center center;
+	animation-name: flamingo-move, flamingo-rotate;
+	animation-duration: 2s, 2.5s;
+	animation-timing-function: ease-out;
+	animation-delay: 0.3s, 2.3s;
+	animation-fill-mode: forwards;
+	animation-iteration-count: 1, infinite;
+	animation-play-state: paused;
+}
+#result2.screen--show .flamingo,
+#result2.screen--show .suitcase,
+#result2.screen--show .green-leaf,
+#result2.screen--show .right-leaf,
+#result2.screen--show .left-leaf,
+#result2.screen--show .form__button,
+#result2.screen--show .form__field {
+	animation-play-state: running;
+}
+@keyframes result-button {
+  0% {
+	opacity:0;
+	color: transparent;
+  }
+  100% {
+    opacity: 1;
+	color: $c-dark;
+  }
+}
+#result2 .form__button {
+	opacity:0;
+	animation: result-button 0.7s ease 2s forwards;
+	animation-play-state: paused;
+	position: absolute;
+	right:0;
+}
+@keyframes form-field {
+  0% {
+	width:1rem;
+	opacity:0;
+  }
+  10% {
+	width:1rem;
+	opacity:1;
+  }
+  100% {
+    opacity:1;
+	width: calc(100% - 21rem);
+ }
+}
+#result2 .form__field {
+	width:1rem;
+	opacity:0;
+	animation: form-field 0.7s ease 2s forwards;
+	animation-play-state: paused;
+	position: absolute;
+	right: 21rem;
+}
