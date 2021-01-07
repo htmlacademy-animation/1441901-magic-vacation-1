@@ -1768,7 +1768,7 @@ img {
 
 .intro__title {
   margin: 0;
-  max-width: 100%;
+  max-width: 100rem;
   text-transform: uppercase;
   font-family: "Radical", "Arial", sans-serif;
   font-weight: 400;
@@ -1777,7 +1777,7 @@ img {
   letter-spacing: -0.04em; }
   @media (min-width: 2000px) {
     .intro__title {
-      max-width: 990px;
+      max-width: 1000px;
       font-size: 120px; } }
   @media (max-width: 1024px) and (orientation: portrait) {
     .intro__title {
