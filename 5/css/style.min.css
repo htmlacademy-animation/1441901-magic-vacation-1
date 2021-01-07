@@ -1768,7 +1768,7 @@ img {
 
 .intro__title {
   margin: 0;
-  max-width: 120rem;
+  max-width: 100%;
   text-transform: uppercase;
   font-family: "Radical", "Arial", sans-serif;
   font-weight: 400;
