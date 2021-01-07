@@ -95,10 +95,7 @@
   line-height: 1.27;
   opacity: 0;
   transform: translateY(50px);
-  transition-property: opacity,transform; 
-  transition-timing-function: ease, ease;
-  transition-duration: 1s, 1s;
-  transition-delay: 0.5s, 0.5s;
+  
 
   @media (min-width: $stop-scaling) {
     width: 509px;
@@ -141,10 +138,15 @@
   }
 }
 .active:hover .intro__message,
-#top:target .intro__message {
+#top:target .intro__message
+.screen--intro .intro__message {
     opacity: 1;
     transform: translateY(0);
-  }
+	transition-property: opacity,transform; 
+    transition-timing-function: ease;
+    transition-duration: 1s;
+    transition-delay: 0.5s;
+}
 
 .intro__label {
   margin: 0 0 1.6rem;
