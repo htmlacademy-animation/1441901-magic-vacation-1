@@ -221,6 +221,47 @@
   }
 }
 
+/* вкатывающиеся кнопки */	
+@keyframes control-prev {
+	from{
+		transform: translate(-100px, 0) rotate(-360deg);
+		opacity: 0;
+	}
+	30%{
+		opacity:0;
+	}
+	to{
+		transform: translate(0, 0) rotate(0);
+		opacity: 1;
+	}
+}
+@keyframes control-next {
+	from{
+		transform:translate(100px, 0) rotate(360deg) ;
+		opacity: 0;
+	}
+	30%{
+		opacity:0;
+	}
+	to{
+		transform: translate(0, 0) rotate(0);
+		opacity: 1;
+	}
+}
+.slider__control.slider__control--prev{
+	transform:translate(-100px, 0) rotate(-360deg) ;
+	transform-origin: center center;
+	opacity: 0;
+	animation: control-prev 1s ease-out 1s forwards;
+}
+.slider__control.slider__control--next{
+	transform: translate(100px, 0) rotate(360deg);
+	transform-origin: center center;
+	opacity: 0;
+	animation: control-next 1s ease-out 1s forwards;
+}
+
+
 .slider__pagination.swiper-pagination {
   position: absolute;
   bottom: 2.8rem;

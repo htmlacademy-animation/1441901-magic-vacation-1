@@ -209,6 +209,35 @@
   }
 }
 
+/* отрицателный результат  */
+@keyframes result3-button {
+	from{
+		opacity: 0;
+	}
+	to{
+		opacity: 1;
+	}
+}
+#result3 .result__button  {
+	opacity: 0;
+	animation: result3-button 1.5s ease-out 1s forwards;
+}
+@keyframes result3-button-img {
+	from{
+		transform: translateX(100px) rotate(360deg);
+	}
+	66%{
+		transform: translateX(0) rotate(360deg);
+	}
+	to{
+		transform: translateX(0) rotate(0);
+	}
+}
+#result3 .result__button span {
+	transform: translateX(100px) rotate(360deg);
+	animation: result3-button-img 1.5s ease 1s forwards;
+}
+
 .result__form {
   margin-top: auto;
 }

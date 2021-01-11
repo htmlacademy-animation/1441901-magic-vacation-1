@@ -75,4 +75,11 @@ export default class FullPageScroll {
       this.activeScreen = Math.max(0, --this.activeScreen);
     }
   }
+  
+  window.addEventListener(`popstate`, function(){
+	 currPage=location.href.split('#')[1];
+	 document.body.classList.remove(`defaultTheme`, `blueTheme`, `lightTheme`, 'darkTheme');
+	 document.body.classList.add(`defaultTheme`);
+  });
+
 }
