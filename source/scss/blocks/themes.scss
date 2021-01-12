@@ -166,3 +166,6 @@
 .page-header--menu-opened .page-header__toggler::before,
 .page-header--menu-opened .page-header__toggler::after {
     box-shadow: none; }
+.social-block--active .social-block__toggler:active:focus {
+	color:#fff;
+}
