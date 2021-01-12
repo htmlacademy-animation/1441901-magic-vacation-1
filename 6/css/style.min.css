@@ -3863,5 +3863,8 @@ img {
 .page-header--menu-opened .page-header__toggler::after {
   box-shadow: none; }
 
+.social-block--active .social-block__toggler:active:focus {
+  color: #fff; }
+
 
 /*# sourceMappingURL=style.min.css.map*/
