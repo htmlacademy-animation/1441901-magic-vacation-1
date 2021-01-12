@@ -1,0 +1,171 @@
+.blueTheme {
+	.page-header__toggler::before,
+	.page-header__toggler::after {
+		background-color: #3e72ee; /*dark*/
+	}
+	.page-header__toggler::before {
+		box-shadow: 0 0.6rem 0 0 #3e72ee; /*dark*/
+	}
+	.page-header__menu a:hover,
+	.page-header__menu a:focus {
+		color: #a0ceff; /* purple */
+	}
+	.page-header__menu a:hover::after,
+	.page-header__menu a:focus::after {
+		background-color: #a0ceff;
+	}
+	.social-block__toggler {
+		color: #3e72ee;
+	}
+	.social-block__toggler:hover,
+	.social-block--active .social-block__toggler,
+	.social-block__toggler:focus,
+	.social-block__link:hover,
+	.social-block__link:active,
+	.social-block__link:active:focus,
+	.social-block__link:focus {
+		color: #a0ceff;
+	}
+	.social-block__toggler:focus::before,
+	.social-block__link:focus {
+		border-color: #a0ceff;
+	}
+	.social-block__toggler:active::before,
+	.social-block__toggler:active:focus::before {
+		background-color: #a0ceff;
+		border-color: #a0ceff;
+	}
+	.slider__control {
+		color: #3e72ee; }
+	.slider__control:hover,
+	.slider__control:focus {
+		color: #a0ceff; }
+	.slider__control:focus::before {
+		border-color: #a0ceff; }
+	.slider__control:active,
+	.slider__control:active:focus {
+		color: #ffffff;
+	}
+	.slider__control:active::before,
+	.slider__control:active:focus::before {
+		background-color: #a0ceff;
+		border-color: #a0ceff;
+	}
+}	
+
+.lightTheme {
+	.page-header__toggler::before,
+	.page-header__toggler::after {
+		background-color: #90b8e2;
+	}
+	.page-header__toggler::before {
+		box-shadow: 0 0.6rem 0 0 #90b8e2;
+	}
+	.page-header__menu a:hover,
+	.page-header__menu a:focus {
+		color: #3e72ee;
+	}
+	.page-header__menu a:hover::after,
+	.page-header__menu a:focus::after {
+		background-color: #3e72ee;
+	}
+	.social-block__toggler {
+	color: #90b8e2;
+	}
+	.social-block__toggler:hover,
+	.social-block--active .social-block__toggler,
+	.social-block__toggler:focus,
+	.social-block__link:hover,
+	.social-block__link:active,
+	.social-block__link:active:focus,
+	.social-block__link:focus {
+		color: #3e72ee;
+	}
+	.social-block__toggler:focus::before,
+	.social-block__link:focus {
+		border-color: #3e72ee;
+	}
+	.social-block__toggler:active::before,
+	.social-block__toggler:active:focus::before {
+		background-color: #3e72ee;
+		border-color: #3e72ee;
+	}
+	.slider__control {
+		color: #3e72ee; }
+	.slider__control:hover,
+	.slider__control:focus {
+		color: #90b8e2; }
+	.slider__control:focus::before {
+		border-color: #90b8e2; }
+	.slider__control:active,
+	.slider__control:active:focus {
+		color: #ffffff;
+	}
+	.slider__control:active::before,
+	.slider__control:active:focus::before {
+		background-color: #90b8e2;
+		border-color: #90b8e2;
+	}
+}
+
+.darkTheme {
+	.page-header__toggler::before,
+	.page-header__toggler::after {
+		background-color: #a07de4;
+	}
+	.page-header__toggler::before {
+		box-shadow: 0 0.6rem 0 0 #a07de4;
+	}
+	.page-header__menu a:hover,
+	.page-header__menu a:focus {
+		color: #5f458c;
+	}
+	.page-header__menu a:hover::after,
+	.page-header__menu a:focus::after {
+		background-color: #5f458c;
+	}
+	.social-block__toggler {
+		color: #a07de4;
+	}
+	.social-block__toggler:hover,
+	.social-block--active .social-block__toggler,
+	.social-block__toggler:focus,
+	.social-block__link:hover,
+	.social-block__link:active,
+	.social-block__link:active:focus,
+	.social-block__link:focus {
+		color: #5f458c;
+	}
+	.social-block__toggler:focus::before,
+	.social-block__link:focus {
+		border-color: #5f458c;
+	}
+	.social-block__toggler:active::before,
+	.social-block__toggler:active:focus::before {
+		background-color: #5f458c;
+		border-color: #5f458c;
+	}
+	.slider__control {
+		color: #a07de4; }
+	.slider__control:hover,
+	.slider__control:focus {
+		color: #5f458c; }
+	.slider__control:focus::before {
+		border-color: #5f458c; }
+	.slider__control:active,
+	.slider__control:active:focus {
+		color: #ffffff;
+	}
+	.slider__control:active::before,
+	.slider__control:active:focus::before {
+		background-color: #5f458c;
+		border-color: #5f458c;
+	}
+}
+/* --- */
+.page-header--menu-opened .page-header__toggler::before,
+.page-header--menu-opened .page-header__toggler::after {
+    box-shadow: none; }
+.social-block--active .social-block__toggler:active:focus {
+	color:#fff;
+}
