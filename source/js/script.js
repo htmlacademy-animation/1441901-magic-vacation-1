@@ -10,6 +10,7 @@ import social from './modules/social.js';
 import FullPageScroll from './modules/full-page-scroll';
 import handlePageLoad from './modules/handle-page-load';
 import sloganAnimation from './modules/slogan.js';
+import prizeAnimation from './modules/prizes.js';
 
 // init modules
 mobileHeight();
@@ -22,6 +23,7 @@ form();
 social();
 handlePageLoad();
 sloganAnimation();
+prizeAnimation();
 
 const fullPageScroll = new FullPageScroll();
 fullPageScroll.init();
