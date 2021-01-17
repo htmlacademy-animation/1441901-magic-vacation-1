@@ -180,14 +180,17 @@
       @media (max-width: $tablet) and (orientation: portrait) {
         margin-right: 1.3rem;
         width: 10.211rem;
+		left: 0;
       }
 
       @media (max-width: $tablet) and (orientation: landscape) {
         width: 13rem;
+		left: -2rem;
       }
 
       @media (max-width: $mobile) and (orientation: landscape) {
         width: 10rem;
+		left: 0;
       }
     }
   }
