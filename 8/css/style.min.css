@@ -2295,13 +2295,16 @@ img {
       @media (max-width: 1024px) and (orientation: portrait) {
         .prizes__item--cases .prizes__icon {
           margin-right: 1.3rem;
-          width: 10.211rem; } }
+          width: 10.211rem;
+          left: 0; } }
       @media (max-width: 1024px) and (orientation: landscape) {
         .prizes__item--cases .prizes__icon {
-          width: 13rem; } }
+          width: 13rem;
+          left: -2rem; } }
       @media (max-width: 768px) and (orientation: landscape) {
         .prizes__item--cases .prizes__icon {
-          width: 10rem; } }
+          width: 10rem;
+          left: 0; } }
   @media (max-width: 1024px) and (orientation: portrait) {
     .prizes__item--codes {
       padding-left: 0.8rem; } }
