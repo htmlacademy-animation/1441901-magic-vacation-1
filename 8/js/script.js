@@ -10467,13 +10467,13 @@ __webpack_require__.r(__webpack_exports__);
     {
       name: `prize-cases`,
       path: `img/prize2.svg`,
-      timeDelay: 2500,
+      timeDelay: 3500,
       target: prizeCases,
     },
     {
       name: `prize-codes`,
       path: `img/prize3.svg`,
-      timeDelay: 5000,
+      timeDelay: 6500,
       target: prizeCodes,
     },
   ];
