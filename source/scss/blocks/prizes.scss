@@ -185,11 +185,11 @@
 
       @media (max-width: $tablet) and (orientation: landscape) {
         width: 13rem;
-		left: -2rem;
+		left: 0;
       }
 
       @media (max-width: $mobile) and (orientation: landscape) {
-        width: 10rem;
+        width: 8rem;
 		left: 0;
       }
     }
