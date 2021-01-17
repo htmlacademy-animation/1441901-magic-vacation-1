@@ -2296,11 +2296,11 @@ img {
         .prizes__item--cases .prizes__icon {
           margin-right: 1.3rem;
           width: 10.211rem;
-          left: 0; } }
+          left: -2rem; } }
       @media (max-width: 1024px) and (orientation: landscape) {
         .prizes__item--cases .prizes__icon {
           width: 13rem;
-          left: -0.7rem; } }
+          left: 0; } }
       @media (max-width: 768px) and (orientation: landscape) {
         .prizes__item--cases .prizes__icon {
           width: 8rem;
