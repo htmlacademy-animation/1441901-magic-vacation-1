@@ -20,7 +20,7 @@ export default () => {
     {
       name: `prize-codes`,
       path: `img/prize3.svg`,
-      timeDelay: 6500,
+      timeDelay: 500,
       target: prizeCodes,
     },
   ];
