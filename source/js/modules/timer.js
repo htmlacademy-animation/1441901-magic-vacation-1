@@ -6,9 +6,14 @@ export default () => {
 
   function showTime() {
     let currTime = Date.now(); 
-    let timer=new Date(endTime-currTime); 
-	let minutes=timer.getMinutes()<10 ? "0"+timer.getMinutes() : timer.getMinutes();  
-	let seconds=timer.getSeconds()<10 ? "0"+timer.getSeconds() : timer.getSeconds();  
+    let minutes='00';
+	let seconds='00';
+	let timeDiff=endTime-currTime;
+	if(timeDiff>0){
+		let timer=new Date(timeDiff); 
+		minutes=timer.getMinutes()<10 ? "0"+timer.getMinutes() : timer.getMinutes();  
+		seconds=timer.getSeconds()<10 ? "0"+timer.getSeconds() : timer.getSeconds();  
+	}
     minutesElement.textContent = minutes;
     secondsElement.textContent = seconds;
 	requestAnimationFrame(showTime);
