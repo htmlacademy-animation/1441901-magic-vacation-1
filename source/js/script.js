@@ -25,7 +25,7 @@ social();
 handlePageLoad();
 sloganAnimation();
 prizeAnimation();
-timerAnimation;
+timerAnimation();
 
 const fullPageScroll = new FullPageScroll();
 fullPageScroll.init();
