@@ -10916,7 +10916,7 @@ Object(_modules_social_js__WEBPACK_IMPORTED_MODULE_7__["default"])();
 Object(_modules_handle_page_load__WEBPACK_IMPORTED_MODULE_9__["default"])();
 Object(_modules_slogan_js__WEBPACK_IMPORTED_MODULE_10__["default"])();
 Object(_modules_prizes_js__WEBPACK_IMPORTED_MODULE_11__["default"])();
-_modules_timer_js__WEBPACK_IMPORTED_MODULE_12__["default"];
+Object(_modules_timer_js__WEBPACK_IMPORTED_MODULE_12__["default"])();
 
 const fullPageScroll = new _modules_full_page_scroll__WEBPACK_IMPORTED_MODULE_8__["default"]();
 fullPageScroll.init();
