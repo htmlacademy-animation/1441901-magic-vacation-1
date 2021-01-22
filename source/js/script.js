@@ -11,6 +11,7 @@ import FullPageScroll from './modules/full-page-scroll';
 import handlePageLoad from './modules/handle-page-load';
 import sloganAnimation from './modules/slogan.js';
 import prizeAnimation from './modules/prizes.js';
+import timerAnimation from './modules/timer.js';
 
 // init modules
 mobileHeight();
@@ -24,6 +25,7 @@ social();
 handlePageLoad();
 sloganAnimation();
 prizeAnimation();
+timerAnimation;
 
 const fullPageScroll = new FullPageScroll();
 fullPageScroll.init();
