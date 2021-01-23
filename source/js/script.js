@@ -31,7 +31,7 @@ const fullPageScroll = new FullPageScroll();
 fullPageScroll.init();
 
 window.addEventListener(`popstate`, function(){
-	 currPage=location.href.split('#')[1];
-	 document.body.classList.remove(`defaultTheme`, `blueTheme`, `lightTheme`, 'darkTheme');
-	 document.body.classList.add(`defaultTheme`);
-  });
+  currPage=location.href.split('#')[1];
+  document.body.classList.remove(`defaultTheme`, `blueTheme`, `lightTheme`, 'darkTheme');
+  document.body.classList.add(`defaultTheme`);
+});

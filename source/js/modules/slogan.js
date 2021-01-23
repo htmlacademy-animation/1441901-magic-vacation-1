@@ -22,8 +22,8 @@ class AccentTypographyBuild {
     const span = document.createElement(`span`);
     span.textContent = letter;
     //span.style.transition = `${this._property} ${this._timer}ms ease ${this._timeOffset}ms`;
-	span.style.animation = `${this._property} ${this._timer}ms ease-in ${this._timeOffset}ms forwards`;
-	
+    span.style.animation = `${this._property} ${this._timer}ms ease-in ${this._timeOffset}ms forwards`;
+
     this._timeOffset += 20;
     return span;
   }
@@ -49,7 +49,7 @@ class AccentTypographyBuild {
     this._element.innerHTML = ``;
     this._element.appendChild(content);
   }
-  
+
   runAnimation() {
     if (!this._element) {
       return;
@@ -82,12 +82,10 @@ setTimeout(()=>{
   animationPrizesScreenTextLine.runAnimation();
 }, 500);
 
-
 const animationRulesScreenTextLine = new AccentTypographyBuild(`.rules__title`, 500, `active`, `translate-span`);
 setTimeout(()=>{
   animationRulesScreenTextLine.runAnimation();
 }, 500);
-
 
 const animationGameScreenTextLine = new AccentTypographyBuild(`.game__title`, 500, `active`, `translate-span`);
 setTimeout(()=>{

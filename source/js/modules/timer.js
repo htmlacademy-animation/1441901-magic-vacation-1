@@ -40,5 +40,4 @@ export default () => {
     endTime = Date.now()+game_duration;
     tick();
   }, false);
-};  
-
+};

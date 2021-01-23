@@ -117,28 +117,28 @@
   }
 }
 @keyframes bullet-scale {
-	from{
-		transform: scale(0);
-		opacity:0;
-	}
-	70%{
-		transform: scale(1.1);
-	}
-	to{
-		transform: scale(1);
-		opacity:1;
-	}
+  from{
+    transform: scale(0);
+    opacity:0;
+  }
+  70%{
+    transform: scale(1.1);
+  }
+  to{
+    transform: scale(1);
+    opacity:1;
+  }
 }
 
 @keyframes move-item {
-	from{
-		transform: translateX(30px);
-		opacity:0;
-	}
-	to{
-		transform: translateX(0);
-		opacity:1;
-	}
+  from{
+    transform: translateX(30px);
+    opacity:0;
+  }
+  to{
+    transform: translateX(0);
+    opacity:1;
+  }
 }
 .rules__item {
   position: relative;
@@ -249,21 +249,21 @@
   0% {
     width: 1em;
     color: transparent;
-	opacity:0;
+    opacity:0;
   }
   10% {
-	width: 1rem;
+    width: 1rem;
     color: transparent;
-	opacity:1;
+    opacity:1;
   }
   70%{
-	color: transparent;
-	opacity:1;
+    color: transparent;
+    opacity:1;
   }
   100% {
     opacity:1;
-	width: 20rem;
-	color: $c-dark;
+    width: 20rem;
+    color: $c-dark;
   }
 }
 

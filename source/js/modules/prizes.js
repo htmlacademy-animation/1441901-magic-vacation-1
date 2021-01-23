@@ -9,7 +9,6 @@ export default () => {
     {src: `img/prize3.svg`, timeout: 1500, numbers: [11, 121, 216, 324, 419, 513, 628, 734, 826, 875, 900]}
   ];
 
-
   function drawNums(prizeNum, prizesOption, fpsInterval, now, then, nums, elapsed) {
     requestAnimationFrame(() => drawNums(prizeNum, prizesOption, fpsInterval, now, then, nums, elapsed));
     now = Date.now();
@@ -35,7 +34,6 @@ export default () => {
     }
   }
 
-
   if (prizeScreen.classList.contains(`active`)) {
     addImagesSvg();
   }
@@ -45,8 +43,4 @@ export default () => {
       addImagesSvg();
     }
   });
-  
-
-
-
 };
