@@ -14,7 +14,7 @@ export default () => {
         });
         targetEl[0].classList.add(`screen--show`);
         targetEl[0].classList.remove(`screen--hidden`);
-        let resultTitleAnimation = targetEl[0].querySelector('.result__title animate');
+        let resultTitleAnimation = targetEl[0].querySelector(`.result__title animate`);
         setTimeout(() => {resultTitleAnimation.beginElement()}, 300);
       });
     }
