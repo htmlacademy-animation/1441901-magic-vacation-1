@@ -1,6 +1,6 @@
 export default () => {
-  const GAME_DURATION=5*60*1000;
-  let endTime = Date.now()+GAME_DURATION;
+  const GAME_DURATION=5 * 60 * 1000;
+  let endTime = Date.now() + GAME_DURATION;
   const minutesElement = document.querySelector(`.game__counter span:first-child`);
   const secondsElement = document.querySelector(`.game__counter span:last-child`);
 
@@ -12,10 +12,10 @@ export default () => {
     let minutes = `00`;
     let seconds = `00`;
     let timeDiff = endTime - currTime;
-    if(timeDiff>0){
+    if (timeDiff > 0) {
       let timer = new Date(timeDiff);
-      minutes = timer.getMinutes()<10 ? `0` + timer.getMinutes() : timer.getMinutes();
-      seconds = timer.getSeconds()<10 ? `0` + timer.getSeconds() : timer.getSeconds();
+      minutes = timer.getMinutes() < 10 ? `0` + timer.getMinutes() : timer.getMinutes();
+      seconds = timer.getSeconds() < 10 ? `0` + timer.getSeconds() : timer.getSeconds();
     }
     minutesElement.textContent = minutes;
     secondsElement.textContent = seconds;
@@ -31,12 +31,12 @@ export default () => {
     }
   }
 
-  window.addEventListener(`popstate`, function(){
+  window.addEventListener(`popstate`, function() {
     endTime = Date.now() + GAME_DURATION;
     tick();
   }, false);
 
-  window.addEventListener(`load`, function(){
+  window.addEventListener(`load`, function() {
     endTime = Date.now() + GAME_DURATION;
     tick();
   }, false);
