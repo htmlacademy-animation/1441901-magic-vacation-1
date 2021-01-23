@@ -14,10 +14,10 @@ class AccentTypographyBuild {
     this._property = property;
     this._element = document.querySelector(this._elementSelector);
     this._timeOffset = 0;
-    
+
     this.prePareText();
   }
-  
+
   createElement(letter) {
     const span = document.createElement(`span`);
     span.textContent = letter;
@@ -27,7 +27,7 @@ class AccentTypographyBuild {
     this._timeOffset += 20;
     return span;
   }
-  
+
   prePareText() {
     if (!this._element) {
       return;
