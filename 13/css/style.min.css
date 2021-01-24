@@ -2420,6 +2420,12 @@ img {
 .prizes__item--cases .prizes__desc b {
   width: 6rem; }
 
+@media (max-width: 1024px) and (orientation: landscape) {
+  .prizes__item--codes .prizes__desc b {
+    width: 9rem; }
+  .prizes__item--cases .prizes__desc b {
+    width: 3rem; } }
+
 .result {
   flex-grow: 1;
   display: flex;
