@@ -59,8 +59,8 @@ export default () => {
       height: 167 * wd
     },
     calf: {
-      width: 600 * wd,
-      height: 600 * wd,
+      width: 500 * wd,
+      height: 500 * wd,
       deltaX: 0 * wd,
       deltaY: -106 * wd
     },
@@ -190,7 +190,7 @@ export default () => {
 
   function animateCalf() {
     const translateYEasing = bezierEasing(0.33, 0, 0.67, 1);
-    animateEasing(calfTranslateY(calfTranslateY, 0), 2800, translateYEasing);
+    animateEasing(calfTranslateYAnimationTick(calfTranslateY, 0), 2800, translateYEasing);
   }
 
   // вспомогательный массив об уже запущенных анимациях
