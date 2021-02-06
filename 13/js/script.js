@@ -10912,6 +10912,24 @@ __webpack_require__.r(__webpack_exports__);
     y: wh - 300 * wd
   };
 
+  const animations = [];
+  const bezierFunc = Object(_helpers_cubic_bezier__WEBPACK_IMPORTED_MODULE_0__["bezierEasing"])(0.33, 0, 0.67, 1);
+  
+  // переменные параметры для анимации моржа
+  let calfTranslateY = 50,
+    calfRotateAngle = 0;
+
+
+  function rotate(angle, cx, cy) {
+    this.ctx.translate(cx, cy);
+    this.ctx.rotate(angle * Math.PI / 180);
+    this.ctx.translate(-cx, -cy);
+  };
+  
+  // смена перемещения моржа по оси Y
+  const calfTranslateYAnimationTick = (from, to) => (progress) => {
+    calfTranslateY = from + progress * (to - from);
+  };
 
   function drawSnow() {
     ctxCalf.save();
@@ -10982,6 +11000,7 @@ __webpack_require__.r(__webpack_exports__);
     ctxCalf.restore();
     
     ctxCalf.save();
+    ctxCalf.transform(1, 0, 0, 1, 0, calfTranslateY);
     ctxCalf.drawImage(
       calfImg,
       startPoint.x + sizes.calf.deltaX,
@@ -10996,11 +11015,35 @@ __webpack_require__.r(__webpack_exports__);
     drawPlane();
     drawCalf();
     drawSnow();
-    requestAnimationFrame(draw);
+    //requestAnimationFrame(draw);
   }
+
+  function animateCalf() {
+    const translateYEasing = Object(_helpers_cubic_bezier__WEBPACK_IMPORTED_MODULE_0__["bezierEasing"])(0.33, 0, 0.67, 1);
+    Object(_helpers_animate__WEBPACK_IMPORTED_MODULE_1__["animateEasing"])(calfTranslateY(calfTranslateY, 0), 1800, translateYEasing);
+  }
+
+  // вспомогательный массив об уже запущенных анимациях
+  let startCalfAnimations = [];
+
+  // вспомогательная функция для отрисовки каждого кадра
+  const globalFluidAnimationTick = (globalProgress) => {
+    // в начале анимации запускаем анимацию отворота
+    if (globalProgress >= 0 && startCalfAnimations.indexOf('calf') === -1) {
+      startCalfAnimations.push('calf');
+      // запускаем смену параметров отворота постера
+      animateCalf();
+    }
+    // отрисовываем сцену с новыми параметрами, высчитанными animateCornerFluid()
+    draw();
+  };
+
+// запускаем анимацию на 3 секунды
+Object(_helpers_animate__WEBPACK_IMPORTED_MODULE_1__["animateDuration"])(globalFluidAnimationTick, 3068);
 
   window.onload = function () {
     draw();
+    //runSerialLoop(snowAnimate);
   }
 });
 
