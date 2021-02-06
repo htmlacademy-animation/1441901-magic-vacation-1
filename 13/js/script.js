@@ -10891,7 +10891,7 @@ __webpack_require__.r(__webpack_exports__);
     calf: {
       width: 600 * wd,
       height: 600 * wd,
-      deltaX: 86 * wd,
+      deltaX: 0 * wd,
       deltaY: -106 * wd
     },
     snowLeft: {
@@ -10909,7 +10909,7 @@ __webpack_require__.r(__webpack_exports__);
   };
   const startPoint = {
     x: Math.round((ww - sizes.ice.width) / 2),
-    y: (wh / 2 - 100) * wd
+    y: (wh / 2 + 100)
   };
 
   const animations = [];
@@ -11039,12 +11039,12 @@ __webpack_require__.r(__webpack_exports__);
   };
 
 // запускаем анимацию на 3 секунды
-Object(_helpers_animate__WEBPACK_IMPORTED_MODULE_1__["animateDuration"])(globalFluidAnimationTick, 3068);
+Object(_helpers_animate__WEBPACK_IMPORTED_MODULE_1__["animateDuration"])(globalFluidAnimationTick, 7068);
 
-  window.onload = function () {
+  /*window.onload = function () {
     draw();
     //runSerialLoop(snowAnimate);
-  }
+  }*/
 });
 
 /***/ }),
