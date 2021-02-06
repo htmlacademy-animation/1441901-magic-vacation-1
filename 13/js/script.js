@@ -10889,8 +10889,8 @@ __webpack_require__.r(__webpack_exports__);
       height: 167 * wd
     },
     calf: {
-      width: 600 * wd,
-      height: 600 * wd,
+      width: 500 * wd,
+      height: 500 * wd,
       deltaX: 0 * wd,
       deltaY: -106 * wd
     },
@@ -11020,7 +11020,7 @@ __webpack_require__.r(__webpack_exports__);
 
   function animateCalf() {
     const translateYEasing = Object(_helpers_cubic_bezier__WEBPACK_IMPORTED_MODULE_0__["bezierEasing"])(0.33, 0, 0.67, 1);
-    Object(_helpers_animate__WEBPACK_IMPORTED_MODULE_1__["animateEasing"])(calfTranslateY(calfTranslateY, 0), 2800, translateYEasing);
+    Object(_helpers_animate__WEBPACK_IMPORTED_MODULE_1__["animateEasing"])(calfTranslateYAnimationTick(calfTranslateY, 0), 2800, translateYEasing);
   }
 
   // вспомогательный массив об уже запущенных анимациях
