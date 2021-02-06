@@ -82,6 +82,24 @@ export default () => {
     y: wh - 300 * wd
   };
 
+  const animations = [];
+  const bezierFunc = bezierEasing(0.33, 0, 0.67, 1);
+  
+  // переменные параметры для анимации моржа
+  let calfTranslateY = 50,
+    calfRotateAngle = 0;
+
+
+  function rotate(angle, cx, cy) {
+    this.ctx.translate(cx, cy);
+    this.ctx.rotate(angle * Math.PI / 180);
+    this.ctx.translate(-cx, -cy);
+  };
+  
+  // смена перемещения моржа по оси Y
+  const calfTranslateYAnimationTick = (from, to) => (progress) => {
+    calfTranslateY = from + progress * (to - from);
+  };
 
   function drawSnow() {
     ctxCalf.save();
@@ -152,6 +170,7 @@ export default () => {
     ctxCalf.restore();
     
     ctxCalf.save();
+    ctxCalf.transform(1, 0, 0, 1, 0, calfTranslateY);
     ctxCalf.drawImage(
       calfImg,
       startPoint.x + sizes.calf.deltaX,
@@ -166,10 +185,34 @@ export default () => {
     drawPlane();
     drawCalf();
     drawSnow();
-    requestAnimationFrame(draw);
+    //requestAnimationFrame(draw);
   }
+
+  function animateCalf() {
+    const translateYEasing = bezierEasing(0.33, 0, 0.67, 1);
+    animateEasing(calfTranslateY(calfTranslateY, 0), 1800, translateYEasing);
+  }
+
+  // вспомогательный массив об уже запущенных анимациях
+  let startCalfAnimations = [];
+
+  // вспомогательная функция для отрисовки каждого кадра
+  const globalFluidAnimationTick = (globalProgress) => {
+    // в начале анимации запускаем анимацию отворота
+    if (globalProgress >= 0 && startCalfAnimations.indexOf('calf') === -1) {
+      startCalfAnimations.push('calf');
+      // запускаем смену параметров отворота постера
+      animateCalf();
+    }
+    // отрисовываем сцену с новыми параметрами, высчитанными animateCornerFluid()
+    draw();
+  };
+
+// запускаем анимацию на 3 секунды
+animateDuration(globalFluidAnimationTick, 3068);
 
   window.onload = function () {
     draw();
+    //runSerialLoop(snowAnimate);
   }
 };
