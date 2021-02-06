@@ -59,8 +59,8 @@ export default () => {
       height: 167 * wd
     },
     calf: {
-      width: 400 * wd,
-      height: 400 * wd,
+      width: 600 * wd,
+      height: 600 * wd,
       deltaX: 86 * wd,
       deltaY: -106 * wd
     },
@@ -86,7 +86,7 @@ export default () => {
   const bezierFunc = bezierEasing(0.33, 0, 0.67, 1);
   
   // переменные параметры для анимации моржа
-  let calfTranslateY = 50,
+  let calfTranslateY = 200,
     calfRotateAngle = 0;
 
 
@@ -190,7 +190,7 @@ export default () => {
 
   function animateCalf() {
     const translateYEasing = bezierEasing(0.33, 0, 0.67, 1);
-    animateEasing(calfTranslateY(calfTranslateY, 0), 1800, translateYEasing);
+    animateEasing(calfTranslateY(calfTranslateY, 0), 2800, translateYEasing);
   }
 
   // вспомогательный массив об уже запущенных анимациях
