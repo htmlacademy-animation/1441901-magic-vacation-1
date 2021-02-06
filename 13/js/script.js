@@ -10889,8 +10889,8 @@ __webpack_require__.r(__webpack_exports__);
       height: 167 * wd
     },
     calf: {
-      width: 271 * wd,
-      height: 212 * wd,
+      width: 400 * wd,
+      height: 400 * wd,
       deltaX: 86 * wd,
       deltaY: -106 * wd
     },
@@ -10909,7 +10909,7 @@ __webpack_require__.r(__webpack_exports__);
   };
   const startPoint = {
     x: Math.round((ww - sizes.ice.width) / 2),
-    y: wh - 300 * wd
+    y: (wh / 2 - 100) * wd
   };
 
   const animations = [];
