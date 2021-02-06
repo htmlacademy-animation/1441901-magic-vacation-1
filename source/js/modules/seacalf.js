@@ -61,7 +61,7 @@ export default () => {
     calf: {
       width: 600 * wd,
       height: 600 * wd,
-      deltaX: 86 * wd,
+      deltaX: 0 * wd,
       deltaY: -106 * wd
     },
     snowLeft: {
@@ -79,7 +79,7 @@ export default () => {
   };
   const startPoint = {
     x: Math.round((ww - sizes.ice.width) / 2),
-    y: (wh / 2 - 100) * wd
+    y: (wh / 2 + 100)
   };
 
   const animations = [];
