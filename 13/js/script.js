@@ -10889,8 +10889,8 @@ __webpack_require__.r(__webpack_exports__);
       height: 167 * wd
     },
     calf: {
-      width: 400 * wd,
-      height: 400 * wd,
+      width: 600 * wd,
+      height: 600 * wd,
       deltaX: 86 * wd,
       deltaY: -106 * wd
     },
@@ -10916,7 +10916,7 @@ __webpack_require__.r(__webpack_exports__);
   const bezierFunc = Object(_helpers_cubic_bezier__WEBPACK_IMPORTED_MODULE_0__["bezierEasing"])(0.33, 0, 0.67, 1);
   
   // переменные параметры для анимации моржа
-  let calfTranslateY = 50,
+  let calfTranslateY = 200,
     calfRotateAngle = 0;
 
 
@@ -11020,7 +11020,7 @@ __webpack_require__.r(__webpack_exports__);
 
   function animateCalf() {
     const translateYEasing = Object(_helpers_cubic_bezier__WEBPACK_IMPORTED_MODULE_0__["bezierEasing"])(0.33, 0, 0.67, 1);
-    Object(_helpers_animate__WEBPACK_IMPORTED_MODULE_1__["animateEasing"])(calfTranslateY(calfTranslateY, 0), 1800, translateYEasing);
+    Object(_helpers_animate__WEBPACK_IMPORTED_MODULE_1__["animateEasing"])(calfTranslateY(calfTranslateY, 0), 2800, translateYEasing);
   }
 
   // вспомогательный массив об уже запущенных анимациях
