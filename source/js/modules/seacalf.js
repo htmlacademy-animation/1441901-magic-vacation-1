@@ -209,10 +209,10 @@ export default () => {
   };
 
 // запускаем анимацию на 3 секунды
-animateDuration(globalFluidAnimationTick, 3068);
+animateDuration(globalFluidAnimationTick, 7068);
 
-  window.onload = function () {
+  /*window.onload = function () {
     draw();
     //runSerialLoop(snowAnimate);
-  }
+  }*/
 };
