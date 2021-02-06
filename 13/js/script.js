@@ -10107,6 +10107,277 @@ module.exports = code;
 
 /***/ }),
 
+/***/ "./source/js/helpers/animate.js":
+/*!**************************************!*\
+  !*** ./source/js/helpers/animate.js ***!
+  \**************************************/
+/*! exports provided: animateEasing, animateProgress, animateDuration */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "animateEasing", function() { return animateEasing; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "animateProgress", function() { return animateProgress; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "animateDuration", function() { return animateDuration; });
+// animation using raf (render function parameter is value from easing function)
+const animateEasing = (render, duration, easing) => new Promise((resolve) => {
+  const start = Date.now();
+  (function loop() {
+    const p = (Date.now() - start) / duration;
+    if (p > 1) {
+      render(1);
+      // set that animation end
+      resolve();
+    } else {
+      requestAnimationFrame(loop);
+      render(easing(p));
+    }
+  }());
+});
+
+// animation using raf (render function parameter is progress from 0 to 1)
+const animateProgress = (render, duration) => new Promise((resolve) => {
+  const start = Date.now();
+  (function loop() {
+    const p = (Date.now() - start) / duration;
+    if (p > 1) {
+      render(1);
+      // set that animation end
+      resolve();
+    } else {
+      requestAnimationFrame(loop);
+      render(p);
+    }
+  }());
+});
+
+// animation using raf (render function parameter is progress from 0 to 1)
+const animateDuration = (render, duration) => new Promise((resolve) => {
+  const start = Date.now();
+  (function loop() {
+    const p = Date.now() - start;
+    if (p > duration) {
+      render(duration);
+      // set that animation end
+      resolve();
+    } else {
+      requestAnimationFrame(loop);
+      render(p);
+    }
+  }());
+});
+
+
+
+
+/***/ }),
+
+/***/ "./source/js/helpers/cubic-bezier.js":
+/*!*******************************************!*\
+  !*** ./source/js/helpers/cubic-bezier.js ***!
+  \*******************************************/
+/*! exports provided: bezierEasing */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "bezierEasing", function() { return bezierEasing; });
+// These values are established by empiricism with tests (tradeoff: performance VS precision)
+const NEWTON_ITERATIONS = 4;
+const NEWTON_MIN_SLOPE = 0.001;
+const SUBDIVISION_PRECISION = 0.0000001;
+const SUBDIVISION_MAX_ITERATIONS = 10;
+
+const kSplineTableSize = 11;
+const kSampleStepSize = 1.0 / (kSplineTableSize - 1.0);
+
+const float32ArraySupported = `Float32Array` in window;
+
+function a(aA1, aA2) {
+  return 1.0 - 3.0 * aA2 + 3.0 * aA1;
+}
+
+function b(aA1, aA2) {
+  return 3.0 * aA2 - 6.0 * aA1;
+}
+
+function c(aA1) {
+  return 3.0 * aA1;
+}
+
+// Returns x(t) given t, x1, and x2, or y(t) given t, y1, and y2.
+function calcBezier(aT, aA1, aA2) {
+  return ((a(aA1, aA2) * aT + b(aA1, aA2)) * aT + c(aA1)) * aT;
+}
+
+// Returns dx/dt given t, x1, and x2, or dy/dt given t, y1, and y2.
+function getSlope(aT, aA1, aA2) {
+  return 3.0 * a(aA1, aA2) * aT * aT + 2.0 * b(aA1, aA2) * aT + c(aA1);
+}
+
+function binarySubdivide(aX, aA, aB, mX1, mX2) {
+  let currentX;
+  let currentT;
+  let i = 0;
+  do {
+    currentT = aA + (aB - aA) / 2.0;
+    currentX = calcBezier(currentT, mX1, mX2) - aX;
+    if (currentX > 0.0) {
+      aB = currentT;
+    } else {
+      aA = currentT;
+    }
+  } while (Math.abs(currentX) > SUBDIVISION_PRECISION && ++i < SUBDIVISION_MAX_ITERATIONS);
+  return currentT;
+}
+
+const bezierEasing = (mX1, mY1, mX2, mY2) => {
+  if (mX1 < 0 || mX1 > 1 || mX2 < 0 || mX2 > 1) {
+    throw new Error(`BezierEasing x values must be in [0, 1] range.`);
+  }
+
+  const mSampleValues = float32ArraySupported ? new Float32Array(kSplineTableSize) : new Array(kSplineTableSize);
+
+  function newtonRaphsonIterate(aX, aGuessT) {
+    for (let i = 0; i < NEWTON_ITERATIONS; ++i) {
+      const currentSlope = getSlope(aGuessT, mX1, mX2);
+      if (currentSlope === 0.0) {
+        return aGuessT;
+      }
+      const currentX = calcBezier(aGuessT, mX1, mX2) - aX;
+      aGuessT -= currentX / currentSlope;
+    }
+    return aGuessT;
+  }
+
+  function calcSampleValues() {
+    for (let i = 0; i < kSplineTableSize; ++i) {
+      mSampleValues[i] = calcBezier(i * kSampleStepSize, mX1, mX2);
+    }
+  }
+
+  function getTForX(aX) {
+    let intervalStart = 0.0;
+    let currentSample = 1;
+    const lastSample = kSplineTableSize - 1;
+
+    for (; currentSample !== lastSample && mSampleValues[currentSample] <= aX; ++currentSample) {
+      intervalStart += kSampleStepSize;
+    }
+    --currentSample;
+
+    // Interpolate to provide an initial guess for t
+    const dist = (aX - mSampleValues[currentSample]) / (mSampleValues[currentSample + 1] - mSampleValues[currentSample]);
+    const guessForT = intervalStart + dist * kSampleStepSize;
+
+    const initialSlope = getSlope(guessForT, mX1, mX2);
+    if (initialSlope >= NEWTON_MIN_SLOPE) {
+      return newtonRaphsonIterate(aX, guessForT);
+    } else if (initialSlope === 0.0) {
+      return guessForT;
+    } else {
+      return binarySubdivide(aX, intervalStart, intervalStart + kSampleStepSize);
+    }
+  }
+
+  let _precomputed = false;
+
+  function precompute() {
+    _precomputed = true;
+    if (mX1 !== mY1 || mX2 !== mY2) {
+      calcSampleValues();
+    }
+  }
+
+  const f = function (aX) {
+    if (!_precomputed) {
+      precompute();
+    }
+    if (mX1 === mY1 && mX2 === mY2) {
+      return aX;
+    } // linear
+    // Because JavaScript number are imprecise, we should guarantee the extremes are right.
+    if (aX === 0) {
+      return 0;
+    }
+    if (aX === 1) {
+      return 1;
+    }
+    return calcBezier(getTForX(aX), mY1, mY2);
+  };
+
+  f.getControlPoints = function () {
+    return [{x: mX1, y: mY1}, {x: mX2, y: mY2}];
+  };
+
+  const args = [mX1, mY1, mX2, mY2];
+  const str = `BezierEasing(` + args + `)`;
+  f.toString = function () {
+    return str;
+  };
+
+  const css = `cubic-bezier(` + args + `)`;
+  f.toCSS = function () {
+    return css;
+  };
+
+  return f;
+};
+//
+// // CSS mapping
+// BezierEasing.css = {
+//   `ease`: BezierEasing(0.25, 0.1, 0.25, 1.0),
+//   `linear`: BezierEasing(0.00, 0.0, 1.00, 1.0),
+//   `ease-in`: BezierEasing(0.42, 0.0, 1.00, 1.0),
+//   `ease-out`: BezierEasing(0.00, 0.0, 0.58, 1.0),
+//   `ease-in-out`: BezierEasing(0.42, 0.0, 0.58, 1.0)
+// };
+
+
+
+
+/***/ }),
+
+/***/ "./source/js/helpers/promise.js":
+/*!**************************************!*\
+  !*** ./source/js/helpers/promise.js ***!
+  \**************************************/
+/*! exports provided: runSerial, runSerialLoop */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "runSerial", function() { return runSerial; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "runSerialLoop", function() { return runSerialLoop; });
+// run promises in sequence one after another
+const runSerial = (tasks) => {
+  let result = Promise.resolve();
+  tasks.forEach((task) => {
+    result = result.then(task);
+  });
+  return result;
+};
+
+// run promises in sequence one after another
+// then check if it's necessery to proceed if there is any checking function
+// otherwise proceed anyway
+const runSerialLoop = (tasks, needProceedFunc) => {
+  return new Promise((resolve) => {
+    runSerial(tasks).then(() => {
+      if (typeof needProceedFunc !== 'function' || needProceedFunc()) {
+        runSerialLoop(tasks, needProceedFunc);
+        return;
+      }
+      resolve();
+    });
+  });
+};
+
+
+
+
+/***/ }),
+
 /***/ "./source/js/modules/chat.js":
 /*!***********************************!*\
   !*** ./source/js/modules/chat.js ***!
@@ -10554,62 +10825,175 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (() => {
-  let ww = document.documentElement.clientWidth,
-    wh = document.documentElement.clientHeight;
+/* harmony import */ var _helpers_cubic_bezier__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helpers/cubic-bezier */ "./source/js/helpers/cubic-bezier.js");
+/* harmony import */ var _helpers_animate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helpers/animate */ "./source/js/helpers/animate.js");
+/* harmony import */ var _helpers_promise__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helpers/promise */ "./source/js/helpers/promise.js");
 
-  let seaCalfCanvas = document.getElementById("sea_calf");
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (() => {
+  let ww = window.innerWidth;
+  let wh = window.innerHeight;
+  let wd = window.innerWidth / 1440;
+
+  let seaCalfCanvas = document.getElementById(`sea_calf`);
   seaCalfCanvas.width = ww;
   seaCalfCanvas.height = wh;
   let ctxCalf = seaCalfCanvas.getContext('2d');
 
-  let calf = new Image();
-  let ice = new Image();
-  let snow = new Image();
-  let plane = new Image();
-  let tree = new Image();
-  let tree2 = new Image();
-  let planeBg = new Image();
-  calf.src = "img/sea-calf-2.png";
-  snow.src = "img/snowflake.png";
-  plane.src = "img/airplane.png";
-  tree.src = "img/tree.png";
-  tree2.src = "img/tree2.png";
-  planeBg.src = "img/back.png";
-  ice.src = "img/ice.png";
+  let calfImg = new Image();
+  let iceImg = new Image();
+  let snowLeftImg = new Image();
+  let snowRightImg = new Image();
+  let planeImg = new Image();
+  let treeImg = new Image();
+  let tree2Img = new Image();
+  let planeBgImg = new Image();
+  calfImg.src = "img/sea-calf-2.png";
+  snowLeftImg.src = "img/snowflake.png";
+  snowRightImg.src = "img/snowflake.png";
+  planeImg.src = "img/airplane.png";
+  treeImg.src = "img/tree.png";
+  tree2Img.src = "img/tree2.png";
+  planeBgImg.src = "img/back.png";
+  iceImg.src = "img/ice.png";
+  
+  const sizes = {
+    planeBg: {
+      width: 586 * wd,
+      height: 324 * wd,
+      deltaX: -18 * wd,
+      deltaY: -183 * wd
+    },
+    plane: {
+      width: 82 * wd,
+      height: 79 * wd,
+      deltaX: 556 * wd,
+      deltaY: -145 * wd
+    },
+    tree: {
+      width: 50 * wd,
+      height: 159 * wd,
+      deltaX: 267 * wd,
+      deltaY: -119 * wd
+    },
+    treeS: {
+      width: 38 * wd,
+      height: 101 * wd,
+      deltaX: 313 * wd,
+      deltaY: -61 * wd
+    },
+    ice: {
+      width: 408 * wd,
+      height: 167 * wd
+    },
+    calf: {
+      width: 271 * wd,
+      height: 212 * wd,
+      deltaX: 86 * wd,
+      deltaY: -106 * wd
+    },
+    snowLeft: {
+      width: 119 * wd,
+      height: 141 * wd,
+      deltaX: -103 * wd,
+      deltaY: -101 * wd
+    },
+    snowRight: {
+      width: 94 * wd,
+      height: 111 * wd,
+      deltaX: 387 * wd,
+      deltaY: -10 * wd
+    },
+  };
+  const startPoint = {
+    x: Math.round((ww - sizes.ice.width) / 2),
+    y: wh - 300 * wd
+  };
 
-  function drawBack() {
-    ctxCalf.drawImage(planeBg, (ww - planeBg.width) / 2, (wh / 2) - planeBg.height);
-  }
-
-  function drawTree() {
-    ctxCalf.drawImage(tree2, (ww / 2) + 10, (wh / 2) - 200);
-    ctxCalf.drawImage(tree, (ww / 2) + 80, (wh / 2) - 140);
-  }
 
   function drawSnow() {
-    ctxCalf.drawImage(snow, (ww / 2) - 150, (wh / 2) - 20, 150, 150);
-    ctxCalf.drawImage(snow, (ww / 2) + 150, (wh / 2) + 20, 100, 100);
+    ctxCalf.save();
+    ctxCalf.drawImage(
+      snowLeftImg,
+      startPoint.x + sizes.snowLeft.deltaX,
+      startPoint.y + sizes.snowLeft.deltaY,
+      sizes.snowLeft.width,
+      sizes.snowLeft.height);
+    ctxCalf.restore();
+    
+    ctxCalf.save();
+    ctxCalf.drawImage(
+      snowRightImg,
+      startPoint.x + sizes.snowRight.deltaX,
+      startPoint.y + sizes.snowRight.deltaY,
+      sizes.snowRight.width,
+      sizes.snowRight.height);
+    ctxCalf.restore();
   }
 
   function drawPlane() {
-    ctxCalf.drawImage(plane, (ww + 300) / 2, (wh / 2) - 300, 300, 300);
-  }
-
-  function drawIce() {
-    ctxCalf.drawImage(ice, (ww - ice.width) / 2, (wh - ice.height) / 2);
+    ctxCalf.save();
+    ctxCalf.drawImage(
+      planeBgImg,
+      startPoint.x + sizes.planeBg.deltaX,
+      startPoint.y + sizes.planeBg.deltaY,
+      sizes.planeBg.width,
+      sizes.planeBg.height);
+    ctxCalf.restore();
+    
+    ctxCalf.save();
+    ctxCalf.drawImage(
+      tree2Img,
+      startPoint.x + sizes.treeS.deltaX,
+      startPoint.y + sizes.treeS.deltaY,
+      sizes.treeS.width,
+      sizes.treeS.height);
+    ctxCalf.restore();
+    
+    ctxCalf.save();
+    ctxCalf.drawImage(
+      treeImg,
+      startPoint.x + sizes.tree.deltaX,
+      startPoint.y + sizes.tree.deltaY,
+      sizes.tree.width,
+      sizes.tree.height);
+    ctxCalf.restore();
+    
+    ctxCalf.save();
+    ctxCalf.drawImage(
+      planeImg,
+      startPoint.x + sizes.plane.deltaX,
+      startPoint.y + sizes.plane.deltaY,
+      sizes.plane.width,
+      sizes.plane.height);
+    ctxCalf.restore();
   }
 
   function drawCalf() {
-    ctxCalf.drawImage(calf, (ww - 600) / 2, (wh - 600) / 2, 600, 600);
+    ctxCalf.save();
+    ctxCalf.drawImage(
+      iceImg,
+      startPoint.x,
+      startPoint.y,
+      sizes.ice.width,
+      sizes.ice.height);
+    ctxCalf.restore();
+    
+    ctxCalf.save();
+    ctxCalf.drawImage(
+      calfImg,
+      startPoint.x + sizes.calf.deltaX,
+      startPoint.y + sizes.calf.deltaY,
+      sizes.calf.width,
+      sizes.calf.height);
+    ctxCalf.restore();
   }
 
   function draw() {
     ctxCalf.clearRect(0, 0, ww, wh);
-    drawBack();
-    drawTree();
     drawPlane();
-    drawIce();
     drawCalf();
     drawSnow();
     requestAnimationFrame(draw);
