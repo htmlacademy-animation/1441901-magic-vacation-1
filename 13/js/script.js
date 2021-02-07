@@ -11451,6 +11451,12 @@ window.addEventListener(`popstate`, function() {
   document.body.classList.add(`defaultTheme`);
 });
 
+window.addEventListener(`click`, function() {
+  if(document.getElementById(`result`).classList.contains(`screen--show`)) {
+    Object(_modules_seacalf_js__WEBPACK_IMPORTED_MODULE_13__["default"])();
+  }
+});
+
 
 /***/ }),
 
