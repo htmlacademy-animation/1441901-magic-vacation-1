@@ -10858,17 +10858,17 @@ __webpack_require__.r(__webpack_exports__);
   tree2Img.src = "img/tree2.png";
   planeBgImg.src = "img/back.png";
   iceImg.src = "img/ice.png";
-  
+
   const sizes = {
     planeBg: {
       width: 586 * wd,
       height: 324 * wd,
-      deltaX: -18 * wd,
+      deltaX: -25 * wd,
       deltaY: -183 * wd
     },
     plane: {
-      width: 82 * wd,
-      height: 79 * wd,
+      width: 100 * wd,
+      height: 100 * wd,
       deltaX: 556 * wd,
       deltaY: -145 * wd
     },
@@ -10891,18 +10891,18 @@ __webpack_require__.r(__webpack_exports__);
     calf: {
       width: 500 * wd,
       height: 500 * wd,
-      deltaX: 0 * wd,
-      deltaY: -106 * wd
+      deltaX: 0,
+      deltaY: -200 * wd
     },
     snowLeft: {
-      width: 119 * wd,
-      height: 141 * wd,
+      width: 150 * wd,
+      height: 150 * wd,
       deltaX: -103 * wd,
       deltaY: -101 * wd
     },
     snowRight: {
-      width: 94 * wd,
-      height: 111 * wd,
+      width: 120 * wd,
+      height: 120 * wd,
       deltaX: 387 * wd,
       deltaY: -10 * wd
     },
@@ -10915,8 +10915,9 @@ __webpack_require__.r(__webpack_exports__);
   const animations = [];
   const bezierFunc = Object(_helpers_cubic_bezier__WEBPACK_IMPORTED_MODULE_0__["bezierEasing"])(0.33, 0, 0.67, 1);
   
-  // переменные параметры для анимации моржа
-  let calfTranslateY = 200,
+  // переменные параметры для анимации моржа  и льдины
+  let calfTranslateY = wh - sizes.calf.height,
+    iceTranslateY = wh - sizes.ice.height - sizes.calf.deltaY,
     calfRotateAngle = 0;
 
 
@@ -10926,9 +10927,12 @@ __webpack_require__.r(__webpack_exports__);
     this.ctx.translate(-cx, -cy);
   };
   
-  // смена перемещения моржа по оси Y
+  // смена перемещения моржа и льдины по оси Y
   const calfTranslateYAnimationTick = (from, to) => (progress) => {
     calfTranslateY = from + progress * (to - from);
+  };
+  const iceTranslateYAnimationTick = (from, to) => (progress) => {
+    iceTranslateY = from + progress * (to - from);
   };
 
   function drawSnow() {
@@ -10940,7 +10944,7 @@ __webpack_require__.r(__webpack_exports__);
       sizes.snowLeft.width,
       sizes.snowLeft.height);
     ctxCalf.restore();
-    
+
     ctxCalf.save();
     ctxCalf.drawImage(
       snowRightImg,
@@ -10960,7 +10964,7 @@ __webpack_require__.r(__webpack_exports__);
       sizes.planeBg.width,
       sizes.planeBg.height);
     ctxCalf.restore();
-    
+
     ctxCalf.save();
     ctxCalf.drawImage(
       tree2Img,
@@ -10969,7 +10973,7 @@ __webpack_require__.r(__webpack_exports__);
       sizes.treeS.width,
       sizes.treeS.height);
     ctxCalf.restore();
-    
+
     ctxCalf.save();
     ctxCalf.drawImage(
       treeImg,
@@ -10978,7 +10982,7 @@ __webpack_require__.r(__webpack_exports__);
       sizes.tree.width,
       sizes.tree.height);
     ctxCalf.restore();
-    
+
     ctxCalf.save();
     ctxCalf.drawImage(
       planeImg,
@@ -10998,7 +11002,7 @@ __webpack_require__.r(__webpack_exports__);
       sizes.ice.width,
       sizes.ice.height);
     ctxCalf.restore();
-    
+
     ctxCalf.save();
     ctxCalf.transform(1, 0, 0, 1, 0, calfTranslateY);
     ctxCalf.drawImage(
@@ -11020,21 +11024,23 @@ __webpack_require__.r(__webpack_exports__);
 
   function animateCalf() {
     const translateYEasing = Object(_helpers_cubic_bezier__WEBPACK_IMPORTED_MODULE_0__["bezierEasing"])(0.33, 0, 0.67, 1);
-    Object(_helpers_animate__WEBPACK_IMPORTED_MODULE_1__["animateEasing"])(calfTranslateYAnimationTick(calfTranslateY, 0), 2800, translateYEasing);
+    Object(_helpers_animate__WEBPACK_IMPORTED_MODULE_1__["animateEasing"])(calfTranslateYAnimationTick(calfTranslateY, 0), 3800, translateYEasing);
+    Object(_helpers_animate__WEBPACK_IMPORTED_MODULE_1__["animateEasing"])(iceTranslateYAnimationTick(iceTranslateY, 0), 3800, translateYEasing);
   }
+  
 
   // вспомогательный массив об уже запущенных анимациях
   let startCalfAnimations = [];
 
   // вспомогательная функция для отрисовки каждого кадра
   const globalFluidAnimationTick = (globalProgress) => {
-    // в начале анимации запускаем анимацию отворота
+    // в начале анимации запускаем анимацию моржа и льдины
     if (globalProgress >= 0 && startCalfAnimations.indexOf('calf') === -1) {
       startCalfAnimations.push('calf');
-      // запускаем смену параметров отворота постера
+      // запускаем смену параметров движения моржа и льдины
       animateCalf();
     }
-    // отрисовываем сцену с новыми параметрами, высчитанными animateCornerFluid()
+    // отрисовываем сцену с новыми параметрами
     draw();
   };
 
