@@ -62,7 +62,7 @@ export default () => {
       width: 500 * wd,
       height: 500 * wd,
       deltaX: 0,
-      deltaY: -200 * wd
+      deltaY: -250 * wd
     },
     snowLeft: {
       width: 150 * wd,
@@ -86,8 +86,8 @@ export default () => {
   const bezierFunc = bezierEasing(0.33, 0, 0.67, 1);
   
   // переменные параметры для анимации моржа  и льдины
-  let calfTranslateY = wh - sizes.calf.height,
-    iceTranslateY = wh - sizes.ice.height - sizes.calf.deltaY,
+  let calfTranslateY = wh - sizes.calf.height * wd,
+    iceTranslateY = wh - sizes.ice.height * wd - sizes.calf.deltaY * wd,
     calfRotateAngle = 0;
 
 
@@ -195,6 +195,9 @@ export default () => {
   function animateCalf() {
     const translateYEasing = bezierEasing(0.33, 0, 0.67, 1);
     animateEasing(calfTranslateYAnimationTick(calfTranslateY, 0), 3800, translateYEasing);
+  }
+  function animateIce() {
+    const translateYEasing = bezierEasing(0.33, 0, 0.67, 1);
     animateEasing(iceTranslateYAnimationTick(iceTranslateY, 0), 3800, translateYEasing);
   }
   
@@ -207,14 +210,17 @@ export default () => {
     // в начале анимации запускаем анимацию моржа и льдины
     if (globalProgress >= 0 && startCalfAnimations.indexOf('calf') === -1) {
       startCalfAnimations.push('calf');
-      // запускаем смену параметров движения моржа и льдины
       animateCalf();
+    }
+    if (globalProgress >= 0 && startCalfAnimations.indexOf('ice') === -1) {
+      startCalfAnimations.push('ice');
+      animateIce();
     }
     // отрисовываем сцену с новыми параметрами
     draw();
   };
 
-// запускаем анимацию на 3 секунды
+// запускаем анимацию на 7 секунды
 animateDuration(globalFluidAnimationTick, 7068);
 
   /*window.onload = function () {
