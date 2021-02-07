@@ -212,16 +212,20 @@ export default () => {
       startCalfAnimations.push('calf');
       animateCalf();
     }
+    // отрисовываем сцену с новыми параметрами
+    draw();
+  };
+  const globalIceAnimationTick = (globalProgress) => {
     if (globalProgress >= 0 && startCalfAnimations.indexOf('ice') === -1) {
       startCalfAnimations.push('ice');
       animateIce();
     }
-    // отрисовываем сцену с новыми параметрами
     draw();
   };
 
 // запускаем анимацию на 7 секунды
 animateDuration(globalFluidAnimationTick, 7068);
+animateDuration(globalIceAnimationTick, 7068);
 
   /*window.onload = function () {
     draw();
