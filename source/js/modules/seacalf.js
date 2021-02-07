@@ -33,12 +33,12 @@ export default () => {
     planeBg: {
       width: 586 * wd,
       height: 324 * wd,
-      deltaX: -25 * wd,
+      deltaX: -30 * wd,
       deltaY: -183 * wd
     },
     plane: {
-      width: 100 * wd,
-      height: 100 * wd,
+      width: 150 * wd,
+      height: 150 * wd,
       deltaX: 556 * wd,
       deltaY: -145 * wd
     },
@@ -61,8 +61,8 @@ export default () => {
     calf: {
       width: 500 * wd,
       height: 500 * wd,
-      deltaX: 0,
-      deltaY: -250 * wd
+      deltaX: -20 * wd,
+      deltaY: -260 * wd
     },
     snowLeft: {
       width: 150 * wd,
@@ -223,12 +223,12 @@ export default () => {
     draw();
   };
 
-// запускаем анимацию на 7 секунды
-animateDuration(globalFluidAnimationTick, 7068);
-animateDuration(globalIceAnimationTick, 7068);
+  // запускаем анимацию на 5 секунд
+  const fullAnimations = [
+    () => animateDuration(globalFluidAnimationTick, 5000),
+    () => animateDuration(globalIceAnimationTick, 5000),
+  ];
 
-  /*window.onload = function () {
-    draw();
-    //runSerialLoop(snowAnimate);
-  }*/
+  runSerial(fullAnimations);
+      
 };
