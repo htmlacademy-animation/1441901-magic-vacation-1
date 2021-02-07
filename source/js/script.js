@@ -37,3 +37,9 @@ window.addEventListener(`popstate`, function() {
   document.body.classList.remove(`defaultTheme`, `blueTheme`, `lightTheme`, `darkTheme`);
   document.body.classList.add(`defaultTheme`);
 });
+
+window.addEventListener(`click`, function() {
+  if(document.getElementById(`result`).classList.contains(`screen--show`)) {
+    seaCalf();
+  }
+});
