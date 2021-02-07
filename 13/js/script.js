@@ -10892,7 +10892,7 @@ __webpack_require__.r(__webpack_exports__);
       width: 500 * wd,
       height: 500 * wd,
       deltaX: 0,
-      deltaY: -200 * wd
+      deltaY: -250 * wd
     },
     snowLeft: {
       width: 150 * wd,
@@ -10916,8 +10916,8 @@ __webpack_require__.r(__webpack_exports__);
   const bezierFunc = Object(_helpers_cubic_bezier__WEBPACK_IMPORTED_MODULE_0__["bezierEasing"])(0.33, 0, 0.67, 1);
   
   // переменные параметры для анимации моржа  и льдины
-  let calfTranslateY = wh - sizes.calf.height,
-    iceTranslateY = wh - sizes.ice.height - sizes.calf.deltaY,
+  let calfTranslateY = wh - sizes.calf.height * wd,
+    iceTranslateY = wh - sizes.ice.height * wd - sizes.calf.deltaY * wd,
     calfRotateAngle = 0;
 
 
@@ -11025,6 +11025,9 @@ __webpack_require__.r(__webpack_exports__);
   function animateCalf() {
     const translateYEasing = Object(_helpers_cubic_bezier__WEBPACK_IMPORTED_MODULE_0__["bezierEasing"])(0.33, 0, 0.67, 1);
     Object(_helpers_animate__WEBPACK_IMPORTED_MODULE_1__["animateEasing"])(calfTranslateYAnimationTick(calfTranslateY, 0), 3800, translateYEasing);
+  }
+  function animateIce() {
+    const translateYEasing = Object(_helpers_cubic_bezier__WEBPACK_IMPORTED_MODULE_0__["bezierEasing"])(0.33, 0, 0.67, 1);
     Object(_helpers_animate__WEBPACK_IMPORTED_MODULE_1__["animateEasing"])(iceTranslateYAnimationTick(iceTranslateY, 0), 3800, translateYEasing);
   }
   
@@ -11037,15 +11040,22 @@ __webpack_require__.r(__webpack_exports__);
     // в начале анимации запускаем анимацию моржа и льдины
     if (globalProgress >= 0 && startCalfAnimations.indexOf('calf') === -1) {
       startCalfAnimations.push('calf');
-      // запускаем смену параметров движения моржа и льдины
       animateCalf();
     }
     // отрисовываем сцену с новыми параметрами
     draw();
   };
+  const globalIceAnimationTick = (globalProgress) => {
+    if (globalProgress >= 0 && startCalfAnimations.indexOf('ice') === -1) {
+      startCalfAnimations.push('ice');
+      animateIce();
+    }
+    draw();
+  };
 
-// запускаем анимацию на 3 секунды
+// запускаем анимацию на 7 секунды
 Object(_helpers_animate__WEBPACK_IMPORTED_MODULE_1__["animateDuration"])(globalFluidAnimationTick, 7068);
+Object(_helpers_animate__WEBPACK_IMPORTED_MODULE_1__["animateDuration"])(globalIceAnimationTick, 7068);
 
   /*window.onload = function () {
     draw();
