@@ -10863,12 +10863,12 @@ __webpack_require__.r(__webpack_exports__);
     planeBg: {
       width: 586 * wd,
       height: 324 * wd,
-      deltaX: -25 * wd,
+      deltaX: -30 * wd,
       deltaY: -183 * wd
     },
     plane: {
-      width: 100 * wd,
-      height: 100 * wd,
+      width: 150 * wd,
+      height: 150 * wd,
       deltaX: 556 * wd,
       deltaY: -145 * wd
     },
@@ -10891,8 +10891,8 @@ __webpack_require__.r(__webpack_exports__);
     calf: {
       width: 500 * wd,
       height: 500 * wd,
-      deltaX: 0,
-      deltaY: -250 * wd
+      deltaX: -20 * wd,
+      deltaY: -260 * wd
     },
     snowLeft: {
       width: 150 * wd,
@@ -11053,14 +11053,14 @@ __webpack_require__.r(__webpack_exports__);
     draw();
   };
 
-// запускаем анимацию на 7 секунды
-Object(_helpers_animate__WEBPACK_IMPORTED_MODULE_1__["animateDuration"])(globalFluidAnimationTick, 7068);
-Object(_helpers_animate__WEBPACK_IMPORTED_MODULE_1__["animateDuration"])(globalIceAnimationTick, 7068);
+  // запускаем анимацию на 5 секунд
+  const fullAnimations = [
+    () => Object(_helpers_animate__WEBPACK_IMPORTED_MODULE_1__["animateDuration"])(globalFluidAnimationTick, 5000),
+    () => Object(_helpers_animate__WEBPACK_IMPORTED_MODULE_1__["animateDuration"])(globalIceAnimationTick, 5000),
+  ];
 
-  /*window.onload = function () {
-    draw();
-    //runSerialLoop(snowAnimate);
-  }*/
+  Object(_helpers_promise__WEBPACK_IMPORTED_MODULE_2__["runSerial"])(fullAnimations);
+      
 });
 
 /***/ }),
