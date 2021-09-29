@@ -75,7 +75,4 @@ export default class FullPageScroll {
       this.activeScreen = Math.max(0, --this.activeScreen);
     }
   }
-  
-  
-
 }
