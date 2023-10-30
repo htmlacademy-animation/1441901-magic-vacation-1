@@ -93,6 +93,9 @@
   text-transform: uppercase;
   font-size: 2.4rem;
   line-height: 1.27;
+  opacity: 0;
+  transform: translateY(50px);
+  
 
   @media (min-width: $stop-scaling) {
     width: 509px;
@@ -133,6 +136,16 @@
       height: 1.1rem;
     }
   }
+}
+.active:hover .intro__message,
+#top:target .intro__message
+.screen--intro .intro__message {
+    opacity: 1;
+    transform: translateY(0);
+	transition-property: opacity,transform; 
+    transition-timing-function: ease;
+    transition-duration: 1s;
+    transition-delay: 0.5s;
 }
 
 .intro__label {
